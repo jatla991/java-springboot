@@ -24,3 +24,5 @@ stages:
               mavenAuthenticateFeed: false
               effectivePomSkip: false
               sonarQubeRunAnalysis: false
+          
+          - script: ehco $(System.DefualtWorkingDIrectoty)
