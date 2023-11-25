@@ -25,4 +25,16 @@ stages:
               effectivePomSkip: false
               sonarQubeRunAnalysis: false
           
-          - script: ehco $(System.DefualtWorkingDIrectoty)
+          - script: echo $(System.DefaultWorkingDirectory)
+          
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(System.DefaultWorkingDirectory)'
+              Contents: '**/*.jar'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+          
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'springboot'
+              publishLocation: 'Container'
